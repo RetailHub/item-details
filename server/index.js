@@ -14,13 +14,14 @@ app.use(express.static(path.join(__dirname, '/../public')));
 
 // eslint-disable-next-line spaced-comment
 //CREATE
-app.post('/items/:id', (req, res) => {
+app.post('/items/', (req, res) => {
+  // console.log(req.body);
   db.createItem(req.body, (err) => {
     if (err) {
       res.status(400);
       res.end();
     } else {
-      console.log('create success');
+      console.log('item was created with id: ', req.body.id);
       res.status(201);
       res.end();
     }
@@ -53,6 +54,21 @@ app.delete('/items/:id', (req, res) => {
       console.log('this id was deleted: ', deleted.id);
       res.status(200);
       res.send(deleted).end();
+    }
+  });
+});
+
+// eslint-disable-next-line spaced-comment
+//UPDATE ONE
+app.patch('/items/:id', (req, res) => {
+  // console.log(req.body.price);
+  db.updateOne(req.params.id, req.body.price, (err, updated) => {
+    if (err) {
+      console.log('unable to update with error: ', err);
+      res.status(404).send('cannot delete');
+    } else {
+      console.log('this price was updated for: ', updated.id);
+      res.status(204).send(updated);
     }
   });
 });

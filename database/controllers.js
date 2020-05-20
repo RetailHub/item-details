@@ -34,8 +34,19 @@ const deleteOne = (itemId, callback) => {
   });
 };
 
+const updateOne = (itemId, newPrice, callback) => {
+  Item.findOneAndUpdate({ id: itemId },
+    { $set: { price: newPrice } }, { new: true, upsert: true }, (err, item) => {
+      if (err) {
+        return callback(err, null);
+      }
+      return callback(null, item);
+    });
+};
+
 module.exports = {
   getAll,
   createItem,
   deleteOne,
+  updateOne,
 };
