@@ -11,7 +11,8 @@
     "build:prod": "webpack --config production.config.js",
     "seed": "node ./database/seed.js",
     "test": "jest",
-    "test:coverage": "jest --verbose --coverage"
+    "test:coverage": "jest --verbose --coverage",
+    "start": "nodemon server/index.js"
   },
   "dependencies": {
     "@babel/polyfill": "^7.8.7",
@@ -21,6 +22,7 @@
     "jquery": "^3.5.0",
     "mongodb": "^3.5.7",
     "mongoose": "^5.9.11",
+    "nodemon": "^2.0.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-test-renderer": "^16.13.1"
