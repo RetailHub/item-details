@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -5,22 +6,53 @@ const path = require('path');
 const app = express();
 const db = require('../database/controllers');
 
-console.log(db);
-
 const PORT = 3002;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '/../public')));
 
+// eslint-disable-next-line spaced-comment
+//CREATE
+app.post('/items/:id', (req, res) => {
+  db.createItem(req.body, (err) => {
+    if (err) {
+      res.status(400);
+      res.end();
+    } else {
+      console.log('create success');
+      res.status(201);
+      res.end();
+    }
+  });
+});
+
+// eslint-disable-next-line spaced-comment
+//READ
 app.get('/items/:id', (req, res) => {
-  const itemId = req.params.id;
-  db(itemId, (err, success) => {
+  db.getAll(req.params.id, (err, success) => {
     if (err) {
       console.log(err);
       res.sendStatus(404).end();
     } else {
-      res.send(success[0]).end();
+      console.log('getAll success');
+      res.status(200);
+      res.send(success).end();
+    }
+  });
+});
+
+// eslint-disable-next-line spaced-comment
+//DELETE ONE
+app.delete('/items/:id', (req, res) => {
+  db.deleteOne(req.params.id, (err, deleted) => {
+    if (err) {
+      console.log('unable to delete with error: ', err);
+      res.sendStatus(404).send('cannot delete');
+    } else {
+      console.log('this id was deleted: ', deleted.id);
+      res.status(200);
+      res.send(deleted).end();
     }
   });
 });

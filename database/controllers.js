@@ -1,14 +1,41 @@
+/* eslint-disable no-console */
 const Item = require('./database');
 
-const getAllDocuments = (itemId, callback) => {
+const getAll = (itemId, callback) => {
   Item.find({ id: itemId }, (err, item) => {
     if (err) {
       console.log(err);
       callback(err, null);
     } else {
-      callback(null, item);
+      callback(null, item[0]);
     }
   });
 };
 
-module.exports = getAllDocuments;
+const createItem = function (obj, callback = () => { }) {
+  const item = new Item(obj);
+  item.save((err) => {
+    if (err) {
+      console.log(err);
+      callback(err, null);
+    } else {
+      callback(null, obj);
+    }
+  });
+};
+
+const deleteOne = (itemId, callback) => {
+  Item.findOneAndDelete({ id: itemId }, (err, query) => {
+    if (err) {
+      console.log(err);
+      callback(err, null);
+    }
+    return callback(null, query);
+  });
+};
+
+module.exports = {
+  getAll,
+  createItem,
+  deleteOne,
+};
