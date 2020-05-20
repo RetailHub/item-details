@@ -37,3 +37,12 @@ npm install -g webpack
 npm install
 ```
 
+## CRUD Operations
+
+| HTTP Verb |           Endpoint          |            Action            |
+|-----------| --------------------------- | ---------------------------- |
+| **POST**  |         /items/             |  CREATE a new item into DB   |
+| **GET**   |       /items/:id            |  READ data and return data   |
+| **PATCH** |       /items/:id            |  UPDATE item with new price  |
+| **DELETE**|       /items/:id            |  DELETE item based on ID     |
+
