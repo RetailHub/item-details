@@ -9,8 +9,8 @@ CREATE TABLE items (
   producer VARCHAR(50) NOT NULL,
   answeredQuestions INT NOT NULL,
   numberOfRatings INT NOT NULL,
-  starPercentages VARCHAR(100){},
+  starPercentages JSON,
   price VARCHAR(50) NOT NULL,
   inStock BOOLEAN,
-  productInfo TEXT[]
+  productInfo text[]
 );
