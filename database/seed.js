@@ -21,6 +21,7 @@ for (let i = 0; i < 100; i += 1) {
       productInfo.push(faker.lorem.paragraphs());
     }
   }
+ 
   const item = new Item({
     id: i,
     productName: faker.commerce.productName(),
