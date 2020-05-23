@@ -5,12 +5,12 @@ CREATE DATABASE itemdetails;
 
 CREATE TABLE items (
   id SERIAL NOT NULL PRIMARY KEY,
-  productName VARCHAR(50) NOT NULL,
-  producer VARCHAR(50) NOT NULL,
+  productName VARCHAR(150) NOT NULL,
+  producer VARCHAR(150) NOT NULL,
   answeredQuestions INT NOT NULL,
+  starPercentages VARCHAR(150),
   numberOfRatings INT NOT NULL,
-  starPercentages JSON,
   price VARCHAR(50) NOT NULL,
   inStock BOOLEAN,
-  productInfo text[]
+  productInfo TEXT[]
 );

@@ -1,0 +1,18 @@
+ activity                                                                                | timestamp                  | source    | source_elapsed | client
+-----------------------------------------------------------------------------------------+----------------------------+-----------+----------------+-----------
+                                                                      Execute CQL3 query | 2020-05-23 00:13:58.929000 | 127.0.0.1 |              0 | 127.0.0.1
+            Parsing select * from items where id=76584624; [Native-Transport-Requests-1] | 2020-05-23 00:13:58.930000 | 127.0.0.1 |           1352 | 127.0.0.1
+                                       Preparing statement [Native-Transport-Requests-1] | 2020-05-23 00:13:58.932000 | 127.0.0.1 |           2719 | 127.0.0.1
+                                 Executing single-partition query on items [ReadStage-3] | 2020-05-23 00:13:58.941000 | 127.0.0.1 |          12025 | 127.0.0.1
+                                              Acquiring sstable references [ReadStage-3] | 2020-05-23 00:13:58.942000 | 127.0.0.1 |          13063 | 127.0.0.1
+                                  Bloom filter allows skipping sstable 130 [ReadStage-3] | 2020-05-23 00:13:58.960000 | 127.0.0.1 |          30737 | 127.0.0.1
+                                   Bloom filter allows skipping sstable 69 [ReadStage-3] | 2020-05-23 00:13:58.962000 | 127.0.0.1 |          32852 | 127.0.0.1
+                                   Bloom filter allows skipping sstable 36 [ReadStage-3] | 2020-05-23 00:13:58.963000 | 127.0.0.1 |          33702 | 127.0.0.1
+                                   Bloom filter allows skipping sstable 25 [ReadStage-3] | 2020-05-23 00:13:58.964000 | 127.0.0.1 |          34632 | 127.0.0.1
+ Skipped 0/4 non-slice-intersecting sstables, included 0 due to tombstones [ReadStage-3] | 2020-05-23 00:13:58.964000 | 127.0.0.1 |          34715 | 127.0.0.1
+                                 Merged data from memtables and 0 sstables [ReadStage-3] | 2020-05-23 00:13:58.967000 | 127.0.0.1 |          37629 | 127.0.0.1
+                                    Read 0 live rows and 0 tombstone cells [ReadStage-3] | 2020-05-23 00:13:58.967000 | 127.0.0.1 |          37980 | 127.0.0.1
+                                                                        Request complete | 2020-05-23 00:13:58.967483 | 127.0.0.1 |          38483 | 127.0.0.1
+
+
+cqlsh:itemdetails>
