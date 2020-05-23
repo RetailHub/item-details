@@ -1,7 +1,4 @@
 const cassandra = require('cassandra-driver');
-const path = require('path');
-
-const itemdetails = path.join(__dirname, '../items2.csv');
 
 const client = new cassandra.Client({
   contactPoints: ['localhost:9042'],
@@ -19,8 +16,10 @@ client.connect()
   })
   .then(() => {
     client.execute(`
-    DROP TABLE IF EXISTS itemdetails.items`);
-    console.log('Table dropped. Now creating table..');
+    DROP TABLE IF EXISTS itemdetails.items`)
+      .then(() => {
+        console.log('Table dropped. Now creating table..');
+      });
   })
   .then(() => {
     client.execute(`
@@ -30,17 +29,16 @@ client.connect()
         producer TEXT,
         answeredQuestions INT,
         numberOfRatings INT,
+        starPercentages TEXT,
         price TEXT,
         inStock BOOLEAN,
+        productinfo list<text>,
         PRIMARY KEY (id)
       )
-    `);
-    console.log('Table created. Now seeding table..');
-  })
-  .then(() => {
-    console.log('filepath is: ', itemdetails);
-    client.execute("COPY itemdetails.items (id, productName, producer, answeredQuestions, numberOfRatings, price, inStock) from '/Users/haidersyed/github/hrr45-sdc/component/item-details/database/items2.csv' WITH DELIMITER = '|' AND HEADER = TRUE;");
-    console.log('Seeding completed');
+    `)
+      .then(() => {
+        console.log('Table created. Please run npm script c2c');
+      });
   })
   .catch((err) => {
     console.error('Error connecting to Cassandra', err);

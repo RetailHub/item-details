@@ -1,11 +1,11 @@
 const faker = require('faker');
 const fs = require('fs');
 
-const createItems = fs.createWriteStream('../items.csv');
-createItems.write('id | productName| producer | answeredQuestions | numberOfRatings | starPercentages | price | inStock | productInfo\n', 'utf8');
+const createItems = fs.createWriteStream('./database/items.csv');
+createItems.write('id|productName|producer|answeredQuestions|starPercentages|numberOfRatings|price|inStock|productInfo\n', 'utf8');
 
 function writeTenMillionUsers(writer, encoding, callback) {
-  let i = 1;
+  let i = 10000000;
   let id = 0;
   function write() {
     let ok = true;
@@ -31,20 +31,8 @@ function writeTenMillionUsers(writer, encoding, callback) {
       };
       const starPercentages = JSON.stringify(stars);
       const numberOfRatings = ones + twos + threes + fours + fives;
-      const productInfo = [faker.lorem.sentence(),
-        faker.lorem.paragraph(),
-        faker.lorem.paragraph()];
-      // for (let j = 0; j < Math.floor(Math.random() * 10) + 1; j += 1) {
-      //   const detail = Math.random();
-      //   if (detail > 0 && detail <= 1 / 3) {
-      //     productInfo.push(faker.lorem.sentence());
-      //   } else if (detail > 1 / 3 && detail <= 2 / 3) {
-      //     productInfo.push(faker.lorem.paragraph());
-      //   } else if (detail > 2 / 3 && detail <= 1) {
-      //     productInfo.push(faker.lorem.paragraphs());
-      //   }
-      // }
-      const data = `${id} | ${productName} | ${producer} | ${answeredQuestions} | ${numberOfRatings} | ${starPercentages} | ${price} | ${inStock} | {${productInfo}} \n`;
+      const productInfo = [`'${faker.lorem.sentence()}'`, `'${faker.lorem.paragraph()}'`, `'${faker.lorem.paragraph()}'`];
+      const data = `${id}|${productName}|${producer}|${answeredQuestions}|${starPercentages}|${numberOfRatings}|${price}|${inStock}|{${productInfo}}\n`;
       if (i === 0) {
         writer.write(data, encoding, callback);
       } else {

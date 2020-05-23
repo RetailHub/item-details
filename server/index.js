@@ -13,20 +13,20 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(express.static(path.join(__dirname, '/../public')));
 
 // // eslint-disable-next-line spaced-comment
-// //CREATE
-// app.post('/items/', (req, res) => {
-//   // console.log(req.body);
-//   db.createItem(req.body, (err) => {
-//     if (err) {
-//       res.status(400);
-//       res.end();
-//     } else {
-//       console.log('item was created with id: ', req.body.id);
-//       res.status(201);
-//       res.end();
-//     }
-//   });
-// });
+//CREATE
+app.post('/items/', (req, res) => {
+  // console.log(req.body);
+  db.createItem(req.body, (err) => {
+    if (err) {
+      res.status(400);
+      res.end();
+    } else {
+      console.log('item was created with id: ', req.body.id);
+      res.status(201);
+      res.end();
+    }
+  });
+});
 
 // // eslint-disable-next-line spaced-comment
 // //READ

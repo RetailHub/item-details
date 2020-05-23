@@ -10,10 +10,13 @@
     "build": "webpack -d --watch",
     "build:prod": "webpack --config production.config.js",
     "seed": "node ./database/seed.js",
-    "create": "node ./database/postgreSQL/create10M.js",
+    "create": "node database/create10M.js",
     "test": "jest",
     "test:coverage": "jest --verbose --coverage",
-    "start": "nodemon server/index.js"
+    "start": "nodemon server/index.js",
+    "startcass" : "node database/cassandra/database.js",
+    "startpg" : "node database/postgreSQL/database.js",
+    "c2c": "cqlsh -k itemdetails -e \"COPY itemdetails.items (id, productName, producer, answeredQuestions, starPercentages, numberOfRatings, price, inStock, productInfo) from './database/items.csv' WITH DELIMITER = '|' AND HEADER = TRUE;\""
   },
   "dependencies": {
     "@babel/polyfill": "^7.8.7",
