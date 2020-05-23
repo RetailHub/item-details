@@ -1,0 +1,7 @@
+itemdetails=# select productName from items where id=76584624;
+ productname
+-------------
+(0 rows)
+
+Time: 1.405 ms
+itemdetails=#`
