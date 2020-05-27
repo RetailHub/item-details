@@ -30,9 +30,13 @@ function writeTenMillionUsers(writer, encoding, callback) {
         five: fives,
       };
       const starPercentages = JSON.stringify(stars);
+      const quotedStarPercentages = starPercentages.replace(/"/g, "'");
       const numberOfRatings = ones + twos + threes + fours + fives;
-      const productInfo = [`'${faker.lorem.sentence()}'`, `'${faker.lorem.paragraph()}'`, `'${faker.lorem.paragraph()}'`];
-      const data = `${id}|${productName}|${producer}|${answeredQuestions}|${starPercentages}|${numberOfRatings}|${price}|${inStock}|{${productInfo}}\n`;
+      const productInfo = [faker.lorem.sentence(),
+        faker.lorem.paragraph(),
+        faker.lorem.paragraph()];
+      const strProductInfo = `'${JSON.stringify(productInfo)}'`;
+      const data = `${id}|${productName}|${producer}|${answeredQuestions}|${quotedStarPercentages}|${numberOfRatings}|${price}|${inStock}|${strProductInfo}\n`;
       if (i === 0) {
         writer.write(data, encoding, callback);
       } else {

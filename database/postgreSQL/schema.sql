@@ -12,5 +12,5 @@ CREATE TABLE items (
   numberOfRatings INT NOT NULL,
   price VARCHAR(50) NOT NULL,
   inStock BOOLEAN,
-  productInfo TEXT[]
+  productInfo TEXT
 );
