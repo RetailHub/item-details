@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable prefer-const */
 const promise = require('bluebird');
 
 const options = {
@@ -32,41 +34,40 @@ module.exports = {
         parsedResult.numberOfRatings = result.numberofratings;
         parsedResult.inStock = result.instock;
         parsedResult.productInfo = result.productinfo.replace(/[[\]']+/g, '').split(',');
-        // console.log('this is parsed result: ', parsedResult);
         res.status(200).send(parsedResult);
+        res.end();
       })
-      .catch((err) => console.error('unable to get result: ', err));
+      .catch((err) => {
+        console.error('unable to get result: ', err);
+        res.status(400).end();
+      });
   },
   createOne(req, res) {
-    // console.log('req from inside createOne: ', req.body);
-    const {
+    // console.log('req from inside createOne: ', req);
+    let {
       id,
-      // eslint-disable-next-line no-unused-vars
       productName,
-      // eslint-disable-next-line no-unused-vars
       producer,
-      // eslint-disable-next-line no-unused-vars
       answeredQuestions,
-      // eslint-disable-next-line no-unused-vars
       starPercentages,
-      // eslint-disable-next-line no-unused-vars
       numberOfRatings,
-      // eslint-disable-next-line no-unused-vars
       price,
-      // eslint-disable-next-line no-unused-vars
       inStock,
       productInfo,
-    } = req.body;
+    } = req;
 
-    req.body.starPercentages = JSON.stringify(starPercentages).replace(/"/g, "'");
-    req.body.productInfo = JSON.stringify(productInfo);
+    starPercentages = JSON.stringify(starPercentages);
+    productInfo = JSON.stringify(productInfo);
 
     // eslint-disable-next-line no-template-curly-in-string
-    db.none('INSERT INTO items (id, productname, producer, answeredquestions, starpercentages, numberofratings, price, instock, productinfo) VALUES (${id}, ${productName}, ${producer}, ${answeredQuestions}, ${starPercentages}, ${numberOfRatings}, ${price}, ${inStock} , ${productInfo})', req.body)
+    db.none('INSERT INTO items (id, productname, producer, answeredquestions, starpercentages, numberofratings, price, instock, productinfo) VALUES (${id}, ${productName}, ${producer}, ${answeredQuestions}, ${starPercentages}, ${numberOfRatings}, ${price}, ${inStock} , ${productInfo})', req)
       .then(() => {
         console.log('successfully added item with id: ', `${id}`);
-        res.status(200);
+        res.status(200).end();
       })
-      .catch((err) => console.error('unable to create one: ', err));
+      .catch((err) => {
+        console.error('unable to create one: ', err);
+        res.status(400).end();
+      });
   },
 };

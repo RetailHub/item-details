@@ -1,3 +1,7 @@
+/* eslint-disable comma-dangle */
+/* eslint-disable strict */
+/* eslint-disable semi */
+// eslint-disable-next-line lines-around-directive
 'use strict'
 /**
  * New Relic agent configuration.
