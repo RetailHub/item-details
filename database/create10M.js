@@ -35,7 +35,7 @@ function writeTenMillionUsers(writer, encoding, callback) {
       const productInfo = [faker.lorem.sentence(),
         faker.lorem.paragraph(),
         faker.lorem.paragraph()];
-      const strProductInfo = `'${JSON.stringify(productInfo)}'`;
+      const strProductInfo = JSON.stringify(productInfo);
       const data = `${id}|${productName}|${producer}|${answeredQuestions}|${quotedStarPercentages}|${numberOfRatings}|${price}|${inStock}|${strProductInfo}\n`;
       if (i === 0) {
         writer.write(data, encoding, callback);

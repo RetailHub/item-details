@@ -1,16 +1,18 @@
+/* eslint-disable spaced-comment */
 /* eslint-disable no-console */
 const express = require('express');
 const bodyParser = require('body-parser');
-// const path = require('path');
+const path = require('path');
 
 const app = express();
 // const db = require('../database/controllers');
+const db = require('../database/postgreSQL/controllers');
 
 const PORT = 3002;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(express.static(path.join(__dirname, '/../public')));
+app.use(express.static(path.join(__dirname, '/../public')));
 
 // // eslint-disable-next-line spaced-comment
 // //CREATE
@@ -75,8 +77,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 // POSTGRESQL
-app.get('/', (request, response) => {
-  response.json({ info: 'POSTGRESQL SERVER ONLINE' });
+//READ
+app.get('/items/:id', (req, res) => {
+  // console.log('id requested was: :', req.params.id);
+  const { id } = req.params;
+  db.getOne(id, res);
+});
+
+// //CREATE
+app.post('/items/', (req, res) => {
+  // console.log(req.body);
+  db.createOne(req, res);
 });
 
 app.listen(PORT, () => {
