@@ -79,7 +79,7 @@ app.use(express.static(path.join(__dirname, '/../public')));
 // POSTGRESQL
 //READ
 app.get('/items/:id', (req, res) => {
-  // console.log('id requested was: :', req.params.id);
+  // console.log('id requested was: ', req.params.id);
   const { id } = req.params;
   db.getOne(id, res);
 });
