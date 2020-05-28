@@ -1,8 +1,10 @@
 /* eslint-disable spaced-comment */
 /* eslint-disable no-console */
+require('newrelic');
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+
 
 const app = express();
 // const db = require('../database/controllers');
@@ -79,15 +81,15 @@ app.use(express.static(path.join(__dirname, '/../public')));
 // POSTGRESQL
 //READ
 app.get('/items/:id', (req, res) => {
-  // console.log('id requested was: :', req.params.id);
+  // console.log('id requested was: ', req.params.id);
   const { id } = req.params;
   db.getOne(id, res);
 });
 
 // //CREATE
 app.post('/items/', (req, res) => {
-  // console.log(req.body);
-  db.createOne(req, res);
+  // console.log('req.body: ', req.body);
+  db.createOne(req.body, res);
 });
 
 app.listen(PORT, () => {
