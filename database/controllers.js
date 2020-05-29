@@ -3,6 +3,7 @@ const Item = require('./database');
 
 const getAll = (itemId, callback) => {
   Item.find({ id: itemId }, (err, item) => {
+    console.log('itemId : ', itemId, ' ', item);
     if (err) {
       console.log(err);
       callback(err, null);

@@ -33,6 +33,7 @@ const handleStarModalMouseLeave = () => {
   }, 200);
 };
 
+const id = window.location.search.substring(2);
 
 class App extends React.Component {
   constructor(props) {
@@ -64,8 +65,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const params = new URLSearchParams(document.location.search.substring(1));
-    this.getData(params.get('id'));
+    this.getData(id);
   }
 
   getData(itemId) {
@@ -153,8 +153,8 @@ class App extends React.Component {
               stars={data.starPercentages}
               starPosition={position}
               numberOfRatings={data.numberOfRatings}
-              />
-            <hr className={style['Basic-hr']}/>
+            />
+            <hr className={style['Basic-hr']} />
             <Price price={data.price} />
             <ItemDetails details={data.productInfo} />
           </div>
