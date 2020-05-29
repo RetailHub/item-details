@@ -27,14 +27,15 @@ module.exports = {
         const parsedResult = {};
         parsedResult.id = result.id;
         parsedResult.producer = result.producer;
-        parsedResult.price = result.price;
+        parsedResult.price = Number(result.price);
         parsedResult.productName = result.productname;
         parsedResult.answeredQuestions = result.answeredquestions;
         parsedResult.starPercentages = JSON.parse(result.starpercentages.replace(/'/g, '"'));
         parsedResult.numberOfRatings = result.numberofratings;
         parsedResult.inStock = result.instock;
         parsedResult.productInfo = result.productinfo.replace(/[[\]']+/g, '').split(',');
-        res.status(200).send(parsedResult);
+        res.status(200);
+        res.send(parsedResult);
         res.end();
       })
       .catch((err) => {
@@ -67,7 +68,7 @@ module.exports = {
       })
       .catch((err) => {
         console.error('unable to create one: ', err);
-        res.status(400).end();
+        res.status(404).end();
       });
   },
 };

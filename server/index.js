@@ -32,15 +32,16 @@ app.use(express.static(path.join(__dirname, '/../public')));
 //   });
 // });
 
-// // eslint-disable-next-line spaced-comment
-// //READ
+// eslint-disable-next-line spaced-comment
+//READ
 // app.get('/items/:id', (req, res) => {
+//   console.log(req.params.id);
 //   db.getAll(req.params.id, (err, success) => {
 //     if (err) {
 //       console.log(err);
 //       res.sendStatus(404).end();
 //     } else {
-//       console.log('getAll success');
+//       console.log('getAll success: ', success);
 //       res.status(200);
 //       res.send(success).end();
 //     }
@@ -81,16 +82,17 @@ app.use(express.static(path.join(__dirname, '/../public')));
 // POSTGRESQL
 //READ
 app.get('/items/:id', (req, res) => {
-  // console.log('id requested was: ', req.params.id);
+  console.log('id requested was: ', req.params.id);
   const { id } = req.params;
   db.getOne(id, res);
+  // console.log('the response was: ', res);
 });
 
-// //CREATE
-app.post('/items/', (req, res) => {
-  // console.log('req.body: ', req.body);
-  db.createOne(req.body, res);
-});
+// // //CREATE
+// app.post('/items/', (req, res) => {
+//   // console.log('req.body: ', req.body);
+//   db.createOne(req.body, res);
+// });
 
 app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}.`);
