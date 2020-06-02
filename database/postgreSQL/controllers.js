@@ -33,7 +33,8 @@ module.exports = {
         parsedResult.starPercentages = JSON.parse(result.starpercentages.replace(/'/g, '"'));
         parsedResult.numberOfRatings = result.numberofratings;
         parsedResult.inStock = result.instock;
-        parsedResult.productInfo = result.productinfo.replace(/[[\]']+/g, '').split(',');
+        parsedResult.productInfo = result.productinfo.replace(/[["{}\]']+/g, '').split(',');
+        // parsedResult.productInfo = result.productinfo.split(',');
         res.status(200);
         res.send(parsedResult);
         res.end();
@@ -57,8 +58,12 @@ module.exports = {
       productInfo,
     } = req;
 
+    console.log('before string: ', req.productInfo);
+
     starPercentages = JSON.stringify(starPercentages);
     productInfo = JSON.stringify(productInfo);
+
+    console.log('after sting: ', req.productInfo);
 
     // eslint-disable-next-line no-template-curly-in-string
     db.none('INSERT INTO items (id, productname, producer, answeredquestions, starpercentages, numberofratings, price, instock, productinfo) VALUES (${id}, ${productName}, ${producer}, ${answeredQuestions}, ${starPercentages}, ${numberOfRatings}, ${price}, ${inStock} , ${productInfo})', req)
