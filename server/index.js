@@ -85,14 +85,13 @@ app.get('/items/:id', (req, res) => {
   console.log('id requested was: ', req.params.id);
   const { id } = req.params;
   db.getOne(id, res);
-  // console.log('the response was: ', res);
 });
 
 // // //CREATE
-// app.post('/items/', (req, res) => {
-//   // console.log('req.body: ', req.body);
-//   db.createOne(req.body, res);
-// });
+app.post('/items/', (req, res) => {
+  // console.log('req.body: ', req.body);
+  db.createOne(req.body, res);
+});
 
 app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}.`);
