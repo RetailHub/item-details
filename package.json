@@ -17,7 +17,8 @@
     "startcass": "node database/cassandra/database.js",
     "startpg": "node database/postgreSQL/database.js",
     "c2c": "cqlsh -k itemdetails -e \"COPY itemdetails.items (id, productName, producer, answeredQuestions, starPercentages, numberOfRatings, price, inStock, productInfo) from './database/items.csv' WITH DELIMITER = '|' AND HEADER = TRUE;\"",
-    "stress": "artillery run server/stress/test.yml"
+    "stress": "artillery run server/stress/test.yml",
+    "schema" : "psql -U postgres < schema.sql"
   },
   "dependencies": {
     "@babel/polyfill": "^7.8.7",
