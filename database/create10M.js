@@ -5,7 +5,7 @@ const createItems = fs.createWriteStream('./database/items.csv');
 createItems.write('id|productName|producer|answeredQuestions|starPercentages|numberOfRatings|price|inStock|productInfo\n', 'utf8');
 
 function writeTenMillionUsers(writer, encoding, callback) {
-  let i = 10;
+  let i = 10000000;
   let id = 0;
   function write() {
     let ok = true;

@@ -2,6 +2,8 @@
 /* eslint-disable strict */
 /* eslint-disable semi */
 // eslint-disable-next-line lines-around-directive
+
+const KEY = require('./newrelickey.js');
 'use strict'
 /**
  * New Relic agent configuration.
@@ -17,7 +19,7 @@ exports.config = {
   /**
    * Your New Relic license key.
    */
-  license_key: '0b844cc795a3602bd646e1de77f79e473799NRAL',
+  license_key: KEY,
   logging: {
     /**
      * Level at which to log. 'trace' is most useful to New Relic when diagnosing
