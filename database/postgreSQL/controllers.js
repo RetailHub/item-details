@@ -66,7 +66,8 @@ module.exports = {
     // console.log('after sting: ', req.productInfo);
 
     // eslint-disable-next-line no-template-curly-in-string
-    db.none('INSERT INTO items (id, productname, producer, answeredquestions, starpercentages, numberofratings, price, instock, productinfo) VALUES (${id}, ${productName}, ${producer}, ${answeredQuestions}, ${starPercentages}, ${numberOfRatings}, ${price}, ${inStock} , ${productInfo})', req)
+    //db.none('INSERT INTO items (id, productname, producer, answeredquestions, starpercentages, numberofratings, price, instock, productinfo) VALUES (${id}, ${productName}, ${producer}, ${answeredQuestions}, ${starPercentages}, ${numberOfRatings}, ${price}, ${inStock} , ${productInfo})', req)
+    db.none('INSERT INTO items (id, productname, producer, answeredquestions, starpercentages, numberofratings, price, instock, productinfo) VALUES (${id}, ${productName}, ${producer}, ${answeredQuestions}, ${starPercentages}, ${numberOfRatings}, ${price}, ${inStock} , ${productInfo}) ON CONFLICT (id) DO UPDATE SET productname = ${productName}, producer = ${producer}, answeredquestions = ${answeredQuestions}, starpercentages = ${starPercentages}, numberofratings = ${numberOfRatings}, price = ${price}, instock = ${inStock}, productinfo = ${productInfo}', req)
       .then(() => {
         console.log('successfully added item with id: ', `${id}`);
         res.status(200).end();
