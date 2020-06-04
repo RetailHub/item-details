@@ -58,12 +58,8 @@ module.exports = {
       productInfo,
     } = req;
 
-    // console.log('before string: ', req.productInfo);
-
     starPercentages = JSON.stringify(starPercentages);
     productInfo = JSON.stringify(productInfo);
-
-    // console.log('after sting: ', req.productInfo);
 
     // eslint-disable-next-line no-template-curly-in-string
     //db.none('INSERT INTO items (id, productname, producer, answeredquestions, starpercentages, numberofratings, price, instock, productinfo) VALUES (${id}, ${productName}, ${producer}, ${answeredQuestions}, ${starPercentages}, ${numberOfRatings}, ${price}, ${inStock} , ${productInfo})', req)
